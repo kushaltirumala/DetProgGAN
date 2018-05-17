@@ -59,7 +59,7 @@ def run_epoch(train, hp):
             nn.utils.clip_grad_norm(model.parameters(), clip)
             optimizer.step()
         
-        losses.append(batch_loss.data.cpu().numpy()[0])
+        losses.append(batch_loss.item())
         
         '''
         if batch_idx % 100 == 0:
