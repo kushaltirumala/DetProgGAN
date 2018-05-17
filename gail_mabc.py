@@ -117,8 +117,8 @@ if load_models:
     
     # policy_state_dict = torch.load(save_path+'model/policy_training.pth')
     # policy_net.load_state_dict(policy_state_dict)
-    discrim_state_dict = torch.load(save_path+'model/discrim_training.pth')
-    discrim_net.load_state_dict(discrim_state_dict)
+    # discrim_state_dict = torch.load(save_path+'model/discrim_training.pth')
+    # discrim_net.load_state_dict(discrim_state_dict)
     
 #####################################################
 
