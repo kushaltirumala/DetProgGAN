@@ -17,7 +17,6 @@ python gail_mabc.py \
 --start_lr 1e-3 \
 --min_lr 1e-4 \
 --batch_size 128 \
---pretrain 50 \
 --burn_in 0 \
 --subsample 16 \
 --cuda
