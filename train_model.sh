@@ -21,5 +21,5 @@ python train.py \
 --batch_size 128 \
 --pretrain 50 \
 --burn_in 0 \
---subsample 16 \
+--subsample 4 \
 --cuda
