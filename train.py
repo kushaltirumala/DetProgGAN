@@ -239,7 +239,7 @@ if args.cont:
     model.load_state_dict(state_dict)
 
     hyperparams = {
-        'train' : 'macro'
+        'train' : 'mid'
     }
     
     test_loss = run_epoch(train=False, hp=hyperparams)
@@ -267,7 +267,7 @@ for e in range(n_epochs):
         'beta' : 1 if epoch > warmup else epoch/warmup,
         'eps' : 0 if epoch < eps_start else int((epoch-eps_start)/10) + 1,
         'tau' : max(2.5*math.exp(-e/100), 0.1),
-        'train' : 'macro'
+        'train' : 'mid'
     }
 
 
