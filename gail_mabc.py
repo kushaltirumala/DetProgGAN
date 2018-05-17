@@ -57,7 +57,12 @@ parser.add_argument('--pretrain-disc-iter', type=int, default=0, metavar='N',
 parser.add_argument('--burn_in', type=int, default=0, required=False, help='burn-in period')
 
 args = parser.parse_args()
+
 use_gpu = True
+
+if not torch.cuda.is_available():
+    use_gpu = False
+
 np.random.seed(args.seed)
 torch.manual_seed(args.seed)
 if use_gpu:
