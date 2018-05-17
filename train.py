@@ -25,7 +25,7 @@ def printlog(line):
 def hyperparams_str(epoch, hp):
     ret = 'Epoch: {:d}'.format(epoch)
 
-    if hp['macro']:
+    if hp['train'] is 'macro':
         ret += ' (pretrain macro)'
     if warmup > 0:
         ret += ' | Beta: {:.2f}'.format(hp['beta'])
