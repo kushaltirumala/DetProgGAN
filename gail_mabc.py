@@ -106,8 +106,8 @@ load_models = True
 if load_models:
     print("loading existing model ...")
     # train from pretrain
-    policy_state_dict = torch.load(save_path+'model/'+params['model']+'_state_dict_best_pretrain.pth')
-    policy_net.load_state_dict(policy_state_dict, strict=False)
+    # policy_state_dict = torch.load(save_path+'model/'+params['model']+'_state_dict_best_pretrain.pth')
+    # policy_net.load_state_dict(policy_state_dict, strict=False)
     
     # train from current good
     #policy_state_dict = torch.load(save_path+'model/policy_training_currentbest.pth')
@@ -115,10 +115,10 @@ if load_models:
     
     # continue training
     
-    # policy_state_dict = torch.load(save_path+'model/policy_training.pth')
-    # policy_net.load_state_dict(policy_state_dict)
-    # discrim_state_dict = torch.load(save_path+'model/discrim_training.pth')
-    # discrim_net.load_state_dict(discrim_state_dict)
+    policy_state_dict = torch.load(save_path+'model/policy_training.pth')
+    policy_net.load_state_dict(policy_state_dict)
+    discrim_state_dict = torch.load(save_path+'model/discrim_training.pth')
+    discrim_net.load_state_dict(discrim_state_dict)
     
 #####################################################
 

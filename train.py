@@ -17,9 +17,11 @@ import visdom
 
 from bball_data.utils import unnormalize, plot_sequence, animate_sequence
 
+LEVEL = 'mid'
+
 def printlog(line):
     print(line)
-    with open(save_path+'log.txt', 'a') as file:
+    with open(save_path+'log_' + LEVEL + '.txt', 'a') as file:
         file.write(line+'\n')
 
 def hyperparams_str(epoch, hp):
@@ -238,7 +240,7 @@ if args.cont:
     model.load_state_dict(state_dict)
 
     hyperparams = {
-        'train' : 'mid'
+        'train' : LEVEL
     }
     
     test_loss = run_epoch(train=False, hp=hyperparams)
@@ -266,7 +268,7 @@ for e in range(n_epochs):
         'beta' : 1 if epoch > warmup else epoch/warmup,
         'eps' : 0 if epoch < eps_start else int((epoch-eps_start)/10) + 1,
         'tau' : max(2.5*math.exp(-e/100), 0.1),
-        'train' : 'mid'
+        'train' : LEVEL
     }
 
 
@@ -309,7 +311,7 @@ for e in range(n_epochs):
 
     # periodically save model
     if epoch % save_every == 0:
-        filename = save_path+'model/'+params['model']+'_state_dict_'+str(epoch)+'.pth'
+        filename = save_path+'model/'+params['model']+'_' + LEVEL + '_state_dict_'+str(epoch)+'.pth'
         torch.save(model.state_dict(), filename)
         printlog('Saved model')
 
