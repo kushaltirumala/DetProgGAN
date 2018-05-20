@@ -23,3 +23,4 @@ python train.py \
 --burn_in 0 \
 --subsample 2 \
 --cuda
+--cont
