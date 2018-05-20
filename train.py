@@ -40,7 +40,6 @@ def hyperparams_str(epoch, hp):
 def run_epoch(train, hp):
     loader = train_loader if train else test_loader
     losses = []
-    
     test_count = 0
 
     for batch_idx, data in enumerate(loader):
@@ -274,6 +273,7 @@ for e in range(n_epochs):
     if epoch == 50 + pretrain_time or epoch == pretrain_time // 2:
         lr = min_lr
         print(lr)
+
 
     # can set a custom learning rate schedule
     # filter removes parameters with requires_grad=False

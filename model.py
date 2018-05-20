@@ -244,9 +244,9 @@ class PROG_RNN_DET(nn.Module):
                 state_t = data[t].clone()
                 next_t = data[t+1].clone()
 
-                remainder = (t % 16) + 1
+                remainder = int(t/16) + 1
 
-                macro_t = data[8*remainder].clone()
+                macro_t = data[4*remainder].clone()
                 
                 _, h_mid = self.gru_mid(state_t.unsqueeze(0), h_mid)
                 dec_t = self.dec_mid(torch.cat([h_mid[-1], macro_t], 1))
