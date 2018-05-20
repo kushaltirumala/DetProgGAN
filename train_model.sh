@@ -22,5 +22,5 @@ python train.py \
 --pretrain 50 \
 --burn_in 0 \
 --subsample 2 \
---cuda
+--cuda \
 --cont
