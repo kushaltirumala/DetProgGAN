@@ -243,7 +243,10 @@ class PROG_RNN_DET(nn.Module):
             for t in range(0, data.shape[0] - 2, 2):
                 state_t = data[t].clone()
                 next_t = data[t+1].clone()
-                macro_t = data[t+2].clone()
+
+                remainder = (t % 16) + 1
+
+                macro_t = data[8*remainder].clone()
                 
                 _, h_mid = self.gru_mid(state_t.unsqueeze(0), h_mid)
                 dec_t = self.dec_mid(torch.cat([h_mid[-1], macro_t], 1))
@@ -267,7 +270,7 @@ class PROG_RNN_DET(nn.Module):
     
         return loss
     
-    def sample(self, data, burn_in=0):
+    def sample_macro(self, data, burn_in=0):
         h_macro = Variable(torch.zeros(self.params['n_layers'], data.size(1), self.params['rnn_macro_dim']))
         if self.params['cuda']:
             h_macro = h_macro.cuda()
@@ -284,7 +287,7 @@ class PROG_RNN_DET(nn.Module):
             
         return torch.stack(ret, 0)
 
-    def sample_mid(self, data, burn_in=0):
+    def sample(self, data, burn_in=0):
         # data: seq_length * batch * 10
         h_macro = Variable(torch.zeros(self.params['n_layers'], data.size(1), self.params['rnn_macro_dim']))
         h_mid = Variable(torch.zeros(self.params['n_layers'], data.size(1), self.params['rnn_mid_dim']))
